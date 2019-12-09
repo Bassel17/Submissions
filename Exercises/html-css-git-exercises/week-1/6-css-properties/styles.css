@@ -13,7 +13,7 @@ a {
   border-left: 2px solid blue;
 }
 
-.message__time--old {
+.messages :first-child {
   opacity: 0.5;
 }
 
