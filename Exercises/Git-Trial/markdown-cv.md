@@ -10,8 +10,8 @@
 
 ## Education
 
-2010-2014 (expected)
-: **Full Stack, Web Development**; Codi
+2019-2020 (expected)
+: **Full Stack, Web Development**; Codi Tech
 
 ## Experience
 
