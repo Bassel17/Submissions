@@ -1,0 +1,42 @@
+body{
+    background-color: rebeccapurple;
+    color: #fff;
+    text-align: center;
+    margin:0;
+}
+
+.header{
+    font-family: Verdana,Tahoma, sans-serif;
+    margin: 2em;
+}
+
+.menu{
+   display:flex;
+   justify-content: center;
+   flex-direction: row;
+}
+
+.menu div{
+    margin:1.5em;
+}
+
+.main img{
+    box-shadow: 10px 10px 5px #000;
+    width:560;
+    height:360px;
+}
+
+.footer{
+    background-color: aqua;
+    padding:1.2em;
+    color:seashell;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    font-weight: bold;
+    color:#fff;
+}
