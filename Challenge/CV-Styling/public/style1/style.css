@@ -1,3 +1,8 @@
-#wrapper{
 
+*{
+    border: 1px red solid;
+}
+
+#wrapper{
+    display:grid;
 }
