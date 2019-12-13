@@ -15,8 +15,8 @@ header div{
 }
 
 #contact{
-    position: absolute;
-    top: 0;
+    position:absolute;
+    top: 2em;
     right:0;
 }
 
@@ -34,11 +34,10 @@ header div{
 }
 .contact-type{
     background-color:red;
-    padding:5px;
+    padding:2px;
 }
 .contact-value{
     background-color:black;
-    padding:5px;
     color:red;
 }
 
@@ -58,6 +57,12 @@ header div{
     padding: 5px;
 }
 
+.content section h3:before{
+    content:".";
+    font-size:5em;
+    color:red;
+}
+
 #about p{
     padding:1em 1em 1em 0;
 }
@@ -70,6 +75,7 @@ header div{
     color:white;
     padding:10px;
     background-color: grey;
+    min-width: 100%;
     margin:1em;
 }
 
@@ -98,7 +104,7 @@ header div{
 .skills-secondary .skill:nth-child(1) span{
     padding:1px;
     background-color: red;
-    padding-right: 90%;
+    padding-right: 80%;
 }
 
 .skills-secondary .skill:nth-child(2) span{
@@ -110,10 +116,40 @@ header div{
 .skills-secondary .skill:nth-child(3) span{
     padding:1px;
     background-color: red;
-    padding-right: 70%;
+    padding-right: 65%;
 }
 
-@media only screen and (max-width: 820px) {
+.experience h4{
+    margin-top:1.5em;
+    color:red;
+}
+
+.experience-institution{
+    font-weight: lighter;
+}
+
+.experience-institution:before{
+    content:"@ ";
+}
+
+.experience-details{
+    margin-bottom:1.5em;
+    opacity:0.5;
+}
+
+.experience-date-separator{
+    color:red;
+}
+
+#hobbies ul{
+    margin:1em;
+}
+
+@media only screen and (max-width: 1200px) {
+    header div{
+        flex-direction: column;
+    }
+    
     .content{
         grid-template-columns:1fr;
     }
@@ -125,7 +161,22 @@ header div{
 
     #contact>h3 {
         border-bottom: 1px grey solid;
+        padding-bottom:0;
         display:block;
+    }
+
+    .contacts{
+        margin-top:1em;
+    }
+
+    .contact-value{
+        padding-left:1em;
+        background-color:white;
+        color:black;
+    }
+
+    .contact-value a{
+        color:red;
     }
 
 }
