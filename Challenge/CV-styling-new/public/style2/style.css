@@ -3,10 +3,6 @@ html,body,*{
     padding:0;
 }
 
-#wrapper{
-    padding: 2em;
-}
-
 header div figure img{
     position: absolute;
     top:3em;
