@@ -7,5 +7,13 @@ const imageSwitcherOnMouseOver = ()=>{
         });
     }
 }
+const imageSwitcherOnMouseLeave = ()=>{
+    for(let i=0;i<5;i++){
+        images[i].addEventListener("mouseleave",()=>{
+            images[i].src = "images/image"+(i+1)+".jpg";
+        });
+    }
+}
 
 imageSwitcherOnMouseOver();
+imageSwitcherOnMouseLeave();
