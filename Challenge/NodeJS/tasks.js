@@ -80,6 +80,11 @@ function quit(){
   process.exit();
 }
 
+/**
+ *  lists the available commands and what they do
+ * 
+ * @returns {void}
+ */
 function help(){
   console.log('available commands: \n hello (says hello) \n quit or exit (exits the app) ');
 }
