@@ -90,7 +90,7 @@ function quit(){
  * @returns {void}
  */
 function help(){
-  console.log('available commands: \n hello (says hello) \n quit or exit (exits the app) ');
+  console.log('available commands: \n hello @parameter (says hello @parameter! or hello!) \n quit or exit (exits the app) ');
 }
 
 // The following line starts the application
