@@ -68,7 +68,9 @@ function unknownCommand(c){
  * @returns {void}
  */
 function hello(text){
+  if(text.length === 2)
   console.log('hello ' + text[1]+"!");
+  else console.log("hello!");
 }
 
 
