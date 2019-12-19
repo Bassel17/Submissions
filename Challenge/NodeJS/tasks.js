@@ -48,8 +48,10 @@ function onDataReceived(text) {
   }else if(text === 'list'){
     list();
   }else if(textArray[0] === 'add'){
-    if (textArray[1] === undefined) console.error("you need to add a task");
-    else add(textArray);
+    if (textArray[1] === undefined){ console.error("you need to add a task");}
+    else {add(textArray);}
+  }else if( textArray[0] === 'remove'){
+    remove(textArray);
   }
   else{
     unknownCommand(text);
@@ -67,6 +69,14 @@ function add(textArray){
   listOfTasks.push(textArray.join(" "));
 }
 
+function remove(textArray){
+  if (textArray[1] === undefined){
+    listOfTasks.pop();
+  }else{
+    let listItemNumber = parseInt(textArray[1]);
+    listOfTasks.splice(listItemNumber-1,1);
+  }
+}
 
 /**
  * prints "unknown command"
