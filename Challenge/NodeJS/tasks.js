@@ -17,6 +17,8 @@ function startApp(name){
   console.log("--------------------")
 }
 
+const listOfTasks = ['do exercise','meditate'];
+
 
 /**
  * Decides what to do depending on the data that was received
@@ -43,9 +45,17 @@ function onDataReceived(text) {
     hello(textArray);
   }else if(text === 'help'){
     help();
+  }else if(text === 'list'){
+    list();
   }
   else{
     unknownCommand(text);
+  }
+}
+
+function list(){
+  for (let i = 0 ; i<listOfTasks.length ; i++){
+    console.log(`${i+1}:${listOfTasks[i]}`);
   }
 }
 
