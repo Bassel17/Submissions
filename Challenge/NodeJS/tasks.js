@@ -47,6 +47,9 @@ function onDataReceived(text) {
     help();
   }else if(text === 'list'){
     list();
+  }else if(textArray[0] === 'add'){
+    if (textArray[1] === undefined) console.error("you need to add a task");
+    else add(textArray);
   }
   else{
     unknownCommand(text);
@@ -57,6 +60,11 @@ function list(){
   for (let i = 0 ; i<listOfTasks.length ; i++){
     console.log(`${i+1}:${listOfTasks[i]}`);
   }
+}
+
+function add(textArray){
+  textArray.shift();
+  listOfTasks.push(textArray.join(" "));
 }
 
 
