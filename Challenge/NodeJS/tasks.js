@@ -74,7 +74,11 @@ function remove(textArray){
     listOfTasks.pop();
   }else{
     let listItemNumber = parseInt(textArray[1]);
-    listOfTasks.splice(listItemNumber-1,1);
+    if(listOfTasks[listItemNumber-1] === undefined){
+      console.error("there is no task with this number");
+    }else{
+      listOfTasks.splice(listItemNumber-1,1);
+    }
   }
 }
 
