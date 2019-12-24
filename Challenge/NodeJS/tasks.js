@@ -52,6 +52,12 @@ function onDataReceived(text) {
     else {add(textArray);}
   }else if( textArray[0] === 'remove'){
     remove(textArray);
+  }else if(textArray[0] === 'edit'){
+    if (textArray[1] === undefined){
+        console.error("you didn't enter a text to edit");
+        return;
+    }
+    edit(textArray);
   }
   else{
     unknownCommand(text);
@@ -82,6 +88,22 @@ function remove(textArray){
   }
 }
 
+function edit(textArray){
+    let number = parseInt(textArray[1]);
+    if(Number.isInteger(number)){
+        if(listOfTasks[number-1] === undefined){
+            console.error("there is no task with this number");
+        }else{
+            textArray.shift();
+            textArray.shift();
+            listOfTasks[number-1] = textArray.join(" ");
+        }
+    }else{
+        listOfTasks.pop();
+        add(textArray);
+    }
+}
+
 /**
  * prints "unknown command"
  * This function is supposed to run when all other commands have failed
@@ -90,7 +112,7 @@ function remove(textArray){
  * @returns {void}
  */
 function unknownCommand(c){
-  console.log('unknown command: "'+c.trim()+'"')
+  console.log('unknown command: "'+c.trim()+'"');
 }
 
 
@@ -112,7 +134,7 @@ function hello(text){
  * @returns {void}
  */
 function quit(){
-  console.log('Quitting now, goodbye!')
+  console.log('Quitting now, goodbye!');
   process.exit();
 }
 
@@ -126,4 +148,4 @@ function help(){
 }
 
 // The following line starts the application
-startApp("Bassel Kanso")
+startApp("Bassel Kanso");
