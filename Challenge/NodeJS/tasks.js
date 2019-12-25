@@ -55,9 +55,21 @@ function onDataReceived(text) {
   }else if(textArray[0] === 'edit'){
     if (textArray[1] === undefined){
         console.error("you didn't enter a text to edit");
-        return;
+    }else{
+        edit(textArray);
     }
-    edit(textArray);
+  }else if(textArray[0] === 'check'){
+      if(textArray[1] === undefined){
+        console.error("you didn't enter a number");
+      }else{
+        check(textArray);
+      }
+  }else if(textArray[0] === 'uncheck'){
+    if(textArray[1] === undefined){
+        console.error("you didn't enter a number");
+      }else{
+        uncheck(textArray);
+      }
   }
   else{
     unknownCommand(text);
@@ -105,6 +117,22 @@ function edit(textArray){
     }else{
         listOfTasks.pop();
         add(textArray);
+    }
+}
+
+function check(textArray){
+    if(listOfTasks[textArray[1]-1] === undefined){
+        console.error("their is no task with this number");
+    }else{
+        listOfTasks[textArray[1]-1].checked = true;
+    }
+}
+
+function uncheck(textArray){
+    if(listOfTasks[textArray[1]-1] === undefined){
+        console.error("their is no task with this number");
+    }else{
+        listOfTasks[textArray[1]-1].checked = false;
     }
 }
 
