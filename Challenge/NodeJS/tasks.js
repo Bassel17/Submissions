@@ -176,7 +176,7 @@ function quit(){
  * @returns {void}
  */
 function help(){
-  console.log('available commands: \n hello @parameter (says hello @parameter! or hello!) \n quit or exit (exits the app) \n add @parameter(adds @parameter to the list) \n remove (removes last element of list or give number to remove element) \n list (lists the todos in the list)');
+  console.log('available commands: \n hello @parameter (says hello @parameter! or hello!) \n quit or exit (exits the app) \n add @parameter(adds @parameter to the list) \n remove (removes last element of list or give number to remove element) \n list (lists the todos in the list) \n check @parameter(checks the task to done) \n uncheck @parameter(unchecks the task to not done)');
 }
 
 // The following line starts the application
