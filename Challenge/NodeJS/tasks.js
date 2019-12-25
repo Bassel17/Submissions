@@ -17,7 +17,7 @@ function startApp(name){
   console.log("--------------------")
 }
 
-const listOfTasks = ['do exercise','meditate'];
+const listOfTasks = [{checked:false,task:'do exercise'},{checked:false,task:'meditate'}];
 
 
 /**
@@ -66,13 +66,17 @@ function onDataReceived(text) {
 
 function list(){
   for (let i = 0 ; i<listOfTasks.length ; i++){
-    console.log(`${i+1}:${listOfTasks[i]}`);
+    if(listOfTasks[i].checked){
+        console.log(`${i+1}: [✓] ${listOfTasks[i].task}`);
+    }else{
+        console.log(`${i+1}: [ ] ${listOfTasks[i].task}`);
+    }
   }
 }
 
 function add(textArray){
   textArray.shift();
-  listOfTasks.push(textArray.join(" "));
+  listOfTasks.push({checked:false,task:textArray.join(" ")});
 }
 
 function remove(textArray){
@@ -96,7 +100,7 @@ function edit(textArray){
         }else{
             textArray.shift();
             textArray.shift();
-            listOfTasks[number-1] = textArray.join(" ");
+            listOfTasks[number-1] = {checked:false,task:textArray.join(" ")};
         }
     }else{
         listOfTasks.pop();
