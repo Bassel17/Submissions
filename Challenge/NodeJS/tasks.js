@@ -17,7 +17,16 @@ function startApp(name){
   console.log("--------------------")
 }
 
-const listOfTasks = [{checked:false,task:'do exercise'},{checked:false,task:'meditate'}];
+const listOfTasks = [
+    {
+        checked:false,
+        task:'do exercise'
+    },
+    {
+        checked:false,
+        task:'meditate'
+    }
+];
 
 
 /**
@@ -38,33 +47,35 @@ const listOfTasks = [{checked:false,task:'do exercise'},{checked:false,task:'med
 function onDataReceived(text) {
   text=text.trim();
   const textArray = text.split(" ");
-  if (text === 'quit' || text === 'exit') {
+  const command = textArray[0];
+  
+  if (command === 'quit' || command === 'exit') {
     quit();
   }
-  else if(textArray[0] === 'hello'){
+  else if(command === 'hello'){
     hello(textArray);
-  }else if(text === 'help'){
+  }else if(command === 'help'){
     help();
-  }else if(text === 'list'){
+  }else if(command === 'list'){
     list();
-  }else if(textArray[0] === 'add'){
+  }else if(command === 'add'){
     if (textArray[1] === undefined){ console.error("you need to add a task");}
     else {add(textArray);}
-  }else if( textArray[0] === 'remove'){
+  }else if( command === 'remove'){
     remove(textArray);
-  }else if(textArray[0] === 'edit'){
+  }else if(command === 'edit'){
     if (textArray[1] === undefined){
         console.error("you didn't enter a text to edit");
     }else{
         edit(textArray);
     }
-  }else if(textArray[0] === 'check'){
+  }else if(command === 'check'){
       if(textArray[1] === undefined){
         console.error("you didn't enter a number");
       }else{
         check(textArray);
       }
-  }else if(textArray[0] === 'uncheck'){
+  }else if(command === 'uncheck'){
     if(textArray[1] === undefined){
         console.error("you didn't enter a number");
       }else{
