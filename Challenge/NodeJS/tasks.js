@@ -1,4 +1,6 @@
 const fs = require('fs');
+let database;
+let listOfTasks = [];
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -13,19 +15,31 @@ function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
+  if(process.argv[2] !== undefined){
+      database = process.argv[2];
+      writeToFile();
+  }else{
+      database = 'database.json';
+  }
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
 }
 
+
 function writeToFile(){
-    fs.writeFile('database.json',JSON.stringify(listOfTasks),(error)=>{
+    fs.writeFile(database,JSON.stringify(listOfTasks),(error)=>{
         if(error) throw error;
     });
 }
 
-let contents = fs.readFileSync('database.json', 'utf8');
-let listOfTasks = JSON.parse(contents);
-
+function readFromDatabase(){
+    try{
+        let contents = fs.readFileSync(database, 'utf8');
+        listOfTasks = JSON.parse(contents);
+    }catch(error){
+        console.log(error);
+    }
+}
 
 /**
  * Decides what to do depending on the data that was received
@@ -55,6 +69,7 @@ function onDataReceived(text) {
   }else if(command === 'help'){
     help();
   }else if(command === 'list'){
+    readFromDatabase();
         list();
   }else if(command === 'add'){
     if (textArray[1] === undefined){ 
