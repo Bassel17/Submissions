@@ -1,4 +1,4 @@
-
+const fs = require('fs');
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -17,16 +17,14 @@ function startApp(name){
   console.log("--------------------")
 }
 
-const listOfTasks = [
-    {
-        checked:false,
-        task:'do exercise'
-    },
-    {
-        checked:false,
-        task:'meditate'
-    }
-];
+function writeToFile(){
+    fs.writeFile('database.json',JSON.stringify(listOfTasks),(error)=>{
+        if(error) throw error;
+    });
+}
+
+let contents = fs.readFileSync('database.json', 'utf8');
+let listOfTasks = JSON.parse(contents);
 
 
 /**
@@ -45,9 +43,9 @@ const listOfTasks = [
  * @returns {void}
  */
 function onDataReceived(text) {
-  text=text.trim();
-  const textArray = text.split(" ");
-  const command = textArray[0];
+    text=text.trim();
+    const textArray = text.split(" ");
+    const command = textArray[0];
   
   if (command === 'quit' || command === 'exit') {
     quit();
@@ -57,29 +55,37 @@ function onDataReceived(text) {
   }else if(command === 'help'){
     help();
   }else if(command === 'list'){
-    list();
+        list();
   }else if(command === 'add'){
-    if (textArray[1] === undefined){ console.error("you need to add a task");}
-    else {add(textArray);}
+    if (textArray[1] === undefined){ 
+        console.error("you need to add a task");}
+    else {
+        add(textArray);
+        writeToFile();
+    }
   }else if( command === 'remove'){
     remove(textArray);
+    writeToFile();
   }else if(command === 'edit'){
     if (textArray[1] === undefined){
         console.error("you didn't enter a text to edit");
     }else{
         edit(textArray);
+        writeToFile();
     }
   }else if(command === 'check'){
       if(textArray[1] === undefined){
         console.error("you didn't enter a number");
       }else{
         check(textArray);
+        writeToFile();
       }
   }else if(command === 'uncheck'){
     if(textArray[1] === undefined){
         console.error("you didn't enter a number");
       }else{
         uncheck(textArray);
+        writeToFile();
       }
   }
   else{
