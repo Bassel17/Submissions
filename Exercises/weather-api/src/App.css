@@ -60,6 +60,11 @@
   flex-wrap: wrap;
 }
 .app__main__weather-list__weather-element{
+  padding:1em;
   text-align: center;
   margin: 1em ;
+}
+
+.app__main__weather-list__weather-element div{
+  margin:1em;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import storm from "./img/weather-icons/storm.svg";
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends Component {
         </navbar>
         <main className="app__main">
           <div className="app__main__weather">
-            <img className="app__main__weather__image" src='http://placekitten.com/200/300'/>
+            <img className="app__main__weather__image" src={storm} alt="storm icon"/>
             <div className="app__main__weather__description">overcast clouds</div>
             <div className="app__main__weather__Temperature"><b>Temperature</b> 10 to 11°C</div>
             <div className="app__main__weather__details">
@@ -27,37 +28,37 @@ class App extends Component {
           <div className="app__main__weather-list">
             <div className="app__main__weather-list__weather-element">
               <div>03:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>8°C</div>
             </div>
             <div className="app__main__weather-list__weather-element">
               <div>06:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>9°C</div>
             </div>
             <div className="app__main__weather-list__weather-element">
               <div>09:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>14°C</div>
             </div>
             <div className="app__main__weather-list__weather-element">
               <div>12:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>17°C</div>
             </div>
             <div className="app__main__weather-list__weather-element">
               <div>15:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>18°C</div>
             </div>
             <div className="app__main__weather-list__weather-element">
               <div>18:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>16°C</div>
             </div>
             <div className="app__main__weather-list__weather-element">
               <div>21:00</div>
-              <img src="http://placekitten.com/200/300"/>
+              <img src={storm}/>
               <div>13°C</div>
             </div>
           </div>
