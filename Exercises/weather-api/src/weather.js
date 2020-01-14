@@ -6,7 +6,7 @@ class Weather extends Component{
         <div className="app__main__weather-list__weather-element">
             <div>{this.props.time}</div>
             <img src={this.props.imgSrc} alt="weather"/>
-            <div>{this.props.degree}</div>
+            <div>{this.props.degree}°C</div>
       </div>
       )
   }

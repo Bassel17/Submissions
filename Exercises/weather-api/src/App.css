@@ -15,6 +15,7 @@
   color:#fff;
   padding: 0.5em 1em;
   border:none;
+  outline: none;
 }
 
 .app__navbar__button{
@@ -63,6 +64,8 @@
   padding:1em;
   text-align: center;
   margin: 1em ;
+  min-width:5%;
+  height:auto;
 }
 
 .app__main__weather-list__weather-element div{
