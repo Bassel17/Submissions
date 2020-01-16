@@ -12,3 +12,8 @@
 "SELECT employees.Name,employees.Company,companies.Date FROM employees INNER JOIN companies ON employees.Company = companies.Name"
 "SELECT employees.Name FROM employees INNER JOIN companies ON employees.Company = companies.Name where companies.date < 2000"
 "SELECT companies.Name FROM companies INNER JOIN employees ON employees.Company = companies.Name where employees.role = "Graphic Designer""
+"SELECT Name FROM students where Points = (SELECT MAX(points) FROM students)"
+"SELECT avg(Points) FROM students"
+"SELECT count(name) FROM students where points = 500"
+"SELECT name FROM students WHERE name like '%s%'"
+"SELECT * FROM students ORDER BY points ASC"
