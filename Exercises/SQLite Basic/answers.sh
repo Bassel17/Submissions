@@ -9,3 +9,6 @@
 "INSERT INTO graduates (Name,Age,Gender,Points) VALUES ((SELECT Name FROM students where Name = "Layal"),(SELECT Age FROM students where Name = "Layal"),(SELECT Gender FROM students where Name = "Layal"),(SELECT Points FROM students where Name = "Layal"))"
 "UPDATE graduates SET Graduation = "16-1-2020" WHERE Name = "Layal""
 "DELETE FROM students WHERE Name = "Layal""
+"SELECT employees.Name,employees.Company,companies.Date FROM employees INNER JOIN companies ON employees.Company = companies.Name"
+"SELECT employees.Name FROM employees INNER JOIN companies ON employees.Company = companies.Name where companies.date < 2000"
+"SELECT companies.Name FROM companies INNER JOIN employees ON employees.Company = companies.Name where employees.role = "Graphic Designer""
