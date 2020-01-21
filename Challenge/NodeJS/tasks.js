@@ -20,6 +20,7 @@ function startApp(name){
       writeToFile();
   }else{
       database = 'database.json';
+      writeToFile();
   }
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
