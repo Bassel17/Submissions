@@ -21,7 +21,13 @@ app.get('/search',(req,res)=>{
     res.send({status:200,message:'ok',data:req.query.s});
 });
 
-app.get('/movies/add',(req,res)=>res.send("add"));
+app.get('/movies/add',(req,res)=>{
+    if(req.query.title === undefined || req.query.year === undefined || isNaN(parseInt(req.query.year)) || (parseInt(req.query.year / 1000) == 0 )|| (parseInt(req.query.year/10000) != 0)){
+        res.send({status:403, error:true, message:'you cannot create a movie without providing a title and a year'})
+    }
+    movies.push({title:req.query.title,year:req.query.year,rating:req.query.rating || 4});
+    res.send({status:200,data:movies})
+});
 app.get('/movies/read',(req,res)=>res.send(movies));
 app.get('/movies/read/by-date',(req,res)=>{
     res.send({status:200,data:movies.sort((a,b)=>a.year - b.year)});
