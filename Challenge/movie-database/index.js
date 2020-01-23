@@ -24,9 +24,10 @@ app.get('/search',(req,res)=>{
 app.get('/movies/add',(req,res)=>{
     if(req.query.title === undefined || req.query.year === undefined || isNaN(parseInt(req.query.year)) || (parseInt(req.query.year / 1000) == 0 )|| (parseInt(req.query.year/10000) != 0)){
         res.send({status:403, error:true, message:'you cannot create a movie without providing a title and a year'})
+    }else{
+        movies.push({title:req.query.title,year:req.query.year,rating:req.query.rating || 4});
+        res.send({status:200,data:movies})
     }
-    movies.push({title:req.query.title,year:req.query.year,rating:req.query.rating || 4});
-    res.send({status:200,data:movies})
 });
 app.get('/movies/read',(req,res)=>res.send(movies));
 app.get('/movies/read/by-date',(req,res)=>{
@@ -50,4 +51,11 @@ app.get('/movies/read/id/:ID',(req,res)=>{
     }
 });
 app.get('/movies/update',(req,res)=>res.send("update"));
-app.get('/movies/delete',(req,res)=>res.send("delete"));
+app.get('/movies/delete/:ID',(req,res)=>{
+    if(req.params.ID<movies.length && req.params.ID >= 0){
+        movies.splice(req.params.ID,1);
+        res.send({status:200,data:movies})
+    }else{
+        res.send({status:404, error:true, message:'the movie <ID> does not exist'});
+    }
+});
