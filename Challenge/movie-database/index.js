@@ -23,5 +23,18 @@ app.get('/search',(req,res)=>{
 
 app.get('/movies/add',(req,res)=>res.send("add"));
 app.get('/movies/read',(req,res)=>res.send(movies));
+app.get('/movies/read/by-date',(req,res)=>{
+    res.send({status:200,data:movies.sort((a,b)=>a.year - b.year)});
+});
+app.get('/movies/read/by-rating',(req,res)=>{
+    res.send({status:200,data:movies.sort((a,b)=>b.rating - a.rating)});
+});
+app.get('/movies/read/by-title',(req,res)=>{
+    res.send({status:200,data:movies.sort((a,b)=>{
+        if(a.title < b.title) { return -1; }
+        if(a.title > b.title) { return 1; }
+        return 0;
+    })
+})})
 app.get('/movies/update',(req,res)=>res.send("update"));
 app.get('/movies/delete',(req,res)=>res.send("delete"));
