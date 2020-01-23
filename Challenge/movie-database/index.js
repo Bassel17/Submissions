@@ -50,7 +50,16 @@ app.get('/movies/read/id/:ID',(req,res)=>{
         res.send({status:404, error:true, message:'the movie <ID> does not exist'});
     }
 });
-app.get('/movies/update',(req,res)=>res.send("update"));
+app.get('/movies/update/:ID',(req,res)=>{
+    if(req.params.ID<movies.length && req.params.ID >= 0){
+        movies[req.params.ID].title = req.query.title || movies[req.params.ID].title;
+        movies[req.params.ID].rating = req.query.rating || movies[req.params.ID].rating;
+        movies[req.params.ID].year = parseInt(req.query.year) || movies[req.params.ID].year;
+        res.send({status:200,data:movies})
+    }else{
+        res.send({status:404, error:true, message:'the movie <ID> does not exist'});
+    }
+});
 app.get('/movies/delete/:ID',(req,res)=>{
     if(req.params.ID<movies.length && req.params.ID >= 0){
         movies.splice(req.params.ID,1);
