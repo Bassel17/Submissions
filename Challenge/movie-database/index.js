@@ -1,5 +1,8 @@
 const express = require('express');
+var bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 const port = 3000;
 const movies = [
     { title: 'Jaws', year: 1975, rating: 8 },
@@ -21,11 +24,11 @@ app.get('/search',(req,res)=>{
     res.send({status:200,message:'ok',data:req.query.s});
 });
 
-app.get('/movies/add',(req,res)=>{
-    if(req.query.title === undefined || req.query.year === undefined || isNaN(parseInt(req.query.year)) || (parseInt(req.query.year / 1000) == 0 )|| (parseInt(req.query.year/10000) != 0)){
+app.post('/movies/add',(req,res)=>{
+    if(req.body.title === undefined || req.body.year === undefined || isNaN(parseInt(req.body.year)) || (parseInt(req.body.year / 1000) == 0 )|| (parseInt(req.body.year/10000) != 0)){
         res.send({status:403, error:true, message:'you cannot create a movie without providing a title and a year'})
     }else{
-        movies.push({title:req.query.title,year:req.query.year,rating:req.query.rating || 4});
+        movies.push({title:req.body.title,year:req.body.year,rating:req.body.rating || 4});
         res.send({status:200,data:movies})
     }
 });
@@ -50,21 +53,22 @@ app.get('/movies/read/id/:ID',(req,res)=>{
         res.send({status:404, error:true, message:'the movie <ID> does not exist'});
     }
 });
-app.get('/movies/update/:ID',(req,res)=>{
-    if(req.params.ID<movies.length && req.params.ID >= 0){
-        movies[req.params.ID].title = req.query.title || movies[req.params.ID].title;
-        movies[req.params.ID].rating = req.query.rating || movies[req.params.ID].rating;
-        movies[req.params.ID].year = parseInt(req.query.year) || movies[req.params.ID].year;
+app.put('/movies/update/',(req,res)=>{
+    if(req.body.ID<movies.length && req.body.ID >= 0){
+        movies[req.body.ID].title = req.body.title || movies[req.body.ID].title;
+        movies[req.body.ID].rating = req.body.rating || movies[req.body.ID].rating;
+        movies[req.body.ID].year = parseInt(req.body.year) || movies[req.body.ID].year;
         res.send({status:200,data:movies})
     }else{
         res.send({status:404, error:true, message:'the movie <ID> does not exist'});
     }
 });
-app.get('/movies/delete/:ID',(req,res)=>{
-    if(req.params.ID<movies.length && req.params.ID >= 0){
-        movies.splice(req.params.ID,1);
+app.delete('/movies/delete',(req,res)=>{
+    if(req.body.ID<movies.length && req.body.ID >= 0){
+        movies.splice(req.body.ID,1);
         res.send({status:200,data:movies})
     }else{
         res.send({status:404, error:true, message:'the movie <ID> does not exist'});
     }
 });
+
