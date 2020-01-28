@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>problem6</title>
+</head>
+<body>
+    <p id="p"></p>
+    <button id="button">press me</button>
+
+
+    <script>
+        const button = document.getElementById("button");
+        const p = document.getElementById("p");
+
+        const multiplicationTableOf = (number)=>{
+            const multiplicationTable = [];
+            for(i=1;i<=12;i++){
+                multiplicationTable.push(parseInt(number)*i);
+            }
+            return multiplicationTable;
+        }
+
+        const multiplicationTablesTillTwelve = () => {
+            const multiplicationTables = [];
+            for(i=1;i<=12;i++){
+                multiplicationTables.push(multiplicationTableOf(i));
+            }
+            return multiplicationTables;
+        }
+
+        button.addEventListener('click',()=>{
+            p.innerText=multiplicationTablesTillTwelve()[1];
+        });
+    </script>
+</body>
+</html>
