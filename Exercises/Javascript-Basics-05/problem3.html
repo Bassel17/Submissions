@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>problem3</title>
+</head>
+<body>
+    <p id="p">enter a number:</p>
+    <input type="text" name="number" id="number">
+    <button id="button">submit</button>
+
+
+    <script>
+        const button = document.getElementById("button");
+        const input = document.getElementById("number");
+        const p = document.getElementById("p");
+
+        const sumTo = (number)=>{
+            sum=0;
+            for (i=1;i<=parseInt(number);i++){
+                sum += i;
+            }
+            return sum;
+        }
+
+        button.addEventListener('click',()=>{
+                p.innerText = `Sum is ${sumTo(input.value)}`;
+        });
+    </script>
+</body>
+</html>
