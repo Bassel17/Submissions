@@ -68,6 +68,8 @@
   height:auto;
 }
 
-.app__main__weather-list__weather-element div{
-  margin:1em;
+/* Current weather */
+
+div {
+  border: 5px solid red;
 }

@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import Search from "./components/Search";
+
+import SayHi, { SayHello } from "./components/WeatherItem";
+import fakeWeatherData from "./fakeWeatherData.json";
+
 import "./App.css";
 import Search from "./search";
 import CurrentWeather from "./currentWeather";
@@ -17,81 +22,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      weatherData:undefined,
-      city:"Beirut"
+      name: "Karim"
     };
   }
 
-  componentDidMount() {
-    this.recallApi(this.state.city);
-  }
-
-  async recallApi(city){
-    try{
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=8&units=metric&appid=6eb4331c142ff61ec60c501139b8cb96`);
-      const results = await response.json();
-      if(response.ok){
-        this.setState({
-          weatherData:results
-        });
-      }else{
-        alert("city not found");
-      }
-    }catch(e){
-      alert('Error: no connection');
-    }
-  }
-
-  getIconSrc = (id) => {
-    if(id<300){
-      return storm;
-    }else{
-      if(id>=300 && id <= 499){
-        return drizzle;
-      }else{ 
-        if(id>=500 && id <= 599){
-          return rain;
-        }else{
-          if(id>=600 && id <= 699){
-            return snow;
-          }else{
-            if(id>=700 && id <= 799){
-              return fog;
-            }else{
-              if(id === 800){
-                return clear;
-              }else{
-                if(id === 801){
-                  return partlycloudy;
-                }else{
-                  if(id>801 && id <= 805){
-                    return mostlycloudy;
-                  }else{
-                    return unknown;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  getTime = (fullTime) => {
-    const array = fullTime.split(" ");
-    const newArray = array[1].split(":");
-    return `${newArray[0]}:${newArray[1]}`;
-  }
-
-  toCelsius = (temp)=>{
-    return Math.round(parseFloat(temp));
-  }
-
-  callbackFunction = (childData)=>{
-    this.setState({city: childData});
-    this.recallApi(childData);
-  }
+  handleInputChange = value => {
+    this.setState({ name: value });
+  };
 
   render() {
     if(this.state.weatherData === undefined){
@@ -100,21 +37,9 @@ class App extends Component {
         const currentWeather = this.state.weatherData.list[0];
       return (
       <div className="app">
-        <header className = "app__navbar">
-            <Search value={this.state.city} parentCallback = {this.callbackFunction}/>
-        </header>
-        <main className="app__main">
-          <CurrentWeather imgSrc={this.getIconSrc(currentWeather.weather[0].id)} description={currentWeather.weather[0].description} minTemp={this.toCelsius(currentWeather.main.temp_min)} maxTemp={this.toCelsius(currentWeather.main.temp_max)} humidity={currentWeather.main.humidity} pressure={currentWeather.main.pressure}/>
-          <div className="app__main__weather-list">
-            { 
-            this.state.weatherData.list.map((element,value)=>{
-              if(value > 0 && value<=7){
-              return <Weather key={value} time = {this.getTime(element.dt_txt)} degree={this.toCelsius(element.main.temp)} imgSrc={this.getIconSrc(element.weather[0].id)}/>
-            }
-          })
-          }
-          </div>
-        </main>
+        <SayHi />
+        <SayHello color="black" name={this.state.name} />
+        <Search handleInput={this.handleInputChange} />
       </div>
       )
     }
